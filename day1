@@ -1,7 +1,7 @@
 // 🙋 Questions: 
 
 // 1. How much is the current memory capacity of a canister?
-// 1. Answer: The current memory capacity of a canister is 8 GB.
+// 1. Answer: The current memory capacity of a canister is 48 GB, but it can vary depending on the project or upgades to the network.
 
 // 2. Answer: The counter variable is declared as a Nat, 
 // which is an immutable value type. As a result, the assignment counter := counter + 1 is invalid, and results in a compile-error. 
