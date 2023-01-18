@@ -2,8 +2,52 @@
 
 // 1. Who controls the ledger canister?
 
-// 1. Answer: The ledger canister is controlled by the ICP Network, a decentralized network (DAO) of nodes that validate and execute transactions on the network. 
+// 1. Answer: The ledger canister is controlled by the ICP Network (NNS), a decentralized network (DAO) of nodes that validate and execute transactions on the network. 
 // Each node in the network holds a copy of the ledger canister and is responsible for maintaining the integrity and consistency of the state of the ledger.
 
 
-// 2. 
+// 2. What is the subnet of the canister with the id: mwrha-maaaa-aaaab-qabqq-cai? How many nodes are running this subnet?
+
+// 2. Answer: The subnet of the canister is: pae4o-o6dxf-xki7q-ezclx-znyd6-fnk6w-vkv5z-5lfwh-xym2i-otrrw-fqe, it is running 16 nodes. 
+
+
+// 3. I have a neuron with 1O ICPs locked with a dissolve delay of 4 years - my neuron has been locked for 2 years. What is my expected voting power?
+
+// 3. Since your neuron has been locked for 2 years, you will have 50% of the total voting power that your 10 ICPs can generate. 
+// In other words, you will have the ability to vote on proposals with the same weight as 5 ICPs.
+
+
+// 4. What is wrong with the following code?
+actor {
+  let n : Nat = 50;
+  let t : Text = "Hello";
+
+  public func convert_to_text(m : Nat) : async Text {
+    Nat.toText(m);
+  };
+ 
+}
+
+// 4. Answer: the function does not actually return a value. Instead, it calls the Nat.toText(m) function, which converts a natural number to a string, 
+// but the result is not being used or returned. The function should return the result of the Nat.toText(m) function call. 
+// ex: actor {
+  public func convert_to_text(m : Nat) : Text {
+    return Nat.toText(m);
+  };
+}
+
+// 5. What is wrong with the following code?
+actor {
+  var languages : [var Text] = ["English", "German", "Chinese", "Japanese", "French"];
+
+  public func show_languages(language : Text) : async [var Text] {
+    return (languages);
+  };
+ 
+}
+
+// 5. Answer: The function show_languages is declared as an async function, which means that it returns a Promise that resolves to the return value. 
+// However, the function does not use the input variable language in any way and it doesn't perform any async operation, 
+// thus the async keyword is unnecessary in this case.
+// The array languages is defined as [var Text], this means that the elements of the array are mutable and can be changed, but the array is 
+// defined within the actor and it's not meant to be changed by external actors, thus it should be defined as let [Text] instead of var [Text]
