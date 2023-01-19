@@ -51,3 +51,6 @@ actor {
 // thus the async keyword is unnecessary in this case.
 // The array languages is defined as [var Text], this means that the elements of the array are mutable and can be changed, but the array is 
 // defined within the actor and it's not meant to be changed by external actors, thus it should be defined as let [Text] instead of var [Text]
+
+
+// 6. 
