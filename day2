@@ -17,34 +17,16 @@
 // In other words, you will have the ability to vote on proposals with the same weight as 5 ICPs.
 
 
-// 4. What is wrong with the following code?
-actor {
-  let n : Nat = 50;
-  let t : Text = "Hello";
 
-  public func convert_to_text(m : Nat) : async Text {
-    Nat.toText(m);
-  };
- 
-}
 
 // 4. Answer: the function does not actually return a value. Instead, it calls the Nat.toText(m) function, which converts a natural number to a string, 
 // but the result is not being used or returned. The function should return the result of the Nat.toText(m) function call. 
 // ex: actor {
-  public func convert_to_text(m : Nat) : Text {
-    return Nat.toText(m);
-  };
-}
+//  public func convert_to_text(m : Nat) : Text {
+//    return Nat.toText(m);
+//  };
+// }
 
-// 5. What is wrong with the following code?
-actor {
-  var languages : [var Text] = ["English", "German", "Chinese", "Japanese", "French"];
-
-  public func show_languages(language : Text) : async [var Text] {
-    return (languages);
-  };
- 
-}
 
 // 5. Answer: The function show_languages is declared as an async function, which means that it returns a Promise that resolves to the return value. 
 // However, the function does not use the input variable language in any way and it doesn't perform any async operation, 
@@ -53,4 +35,74 @@ actor {
 // defined within the actor and it's not meant to be changed by external actors, thus it should be defined as let [Text] instead of var [Text]
 
 
-// 6. 
+// 6. Answer:  The async keyword is unnecessary in this code. The function add_language uses the assignment operator := to update the array of languages, 
+// but in Motoko variables are immutable, this means that you cannot change the value of a variable once it's been assigned. 
+// Instead, you should use a function that creates a new array with the new value appended, something like this: 
+// public func add_language(new_language: Text) : [Text] {
+//    languages = languages.append(new_language);
+//    return (languages);
+//  };
+
+
+// Coding challenges 🧑‍💻
+
+// 1.   func average_array(array: List[Int]) : Int {
+    if (array.size == 0) {
+        return 0;
+    } else {
+        return array.sum() / array.size;
+    };
+}
+
+
+// 2. func count_char(s: String, c: Char) -> Int {
+    var count = 0;
+    for i in 0..s.size {
+        if s[i] == c {
+            count += 1;
+        }
+    }
+    return count;
+}
+
+
+// 3. func factorial(n: Int) -> Int {
+    if n <= 1 {
+        return 1;
+    }
+    return n * factorial(n - 1);
+}
+
+
+// 4. func number_of_words(sentence: String) -> Int {
+    let words = sentence.split(" ");
+    return words.size;
+}
+
+
+// 5. func find_duplicates(arr: [Int]) -> [Int]:
+    var seen = []
+    var duplicates = []
+    for i in 0..arr.size {
+        if seen.contains(arr[i]) {
+            if !duplicates.contains(arr[i]) {
+                duplicates.append(arr[i])
+            }
+        } else {
+            seen.append(arr[i])
+        }
+    }
+    return duplicates
+}
+
+
+// 6. func convert_to_binary(n: Int) -> String {
+    var res = ""
+    var num = n
+    while num > 0 {
+        res = i32.to_str(num % 2) + res
+        num /= 2
+    }
+    return res
+}
+
